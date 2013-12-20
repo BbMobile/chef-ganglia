@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+node.set['ganglia']['host_dmax'] = 86400
+
 case node[:platform]
 when "ubuntu", "debian"
   package "ganglia-monitor"
