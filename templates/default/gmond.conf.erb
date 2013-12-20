@@ -12,7 +12,7 @@ globals {
   cleanup_threshold = 300 /*secs */ 
   gexec = no             
   send_metadata_interval = 0    
-  host_dmax = 86400 
+  host_dmax = <%=node['ganglia']['host_dmax'] %>
 } 
 
 /* If a cluster attribute is specified, then all gmond hosts are wrapped inside 
