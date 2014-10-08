@@ -11,10 +11,11 @@ if platform?( "redhat", "centos", "fedora" )
   package "rrdtool-devel"
 end
 
+unless File.exists?("/usr/src/ganglia-#{node[:ganglia][:version]}.tar.gz")
+
 remote_file "/usr/src/ganglia-#{node[:ganglia][:version]}.tar.gz" do
   source node[:ganglia][:uri]
   checksum node[:ganglia][:checksum]
-  not_if do ::File.exists?('/usr/local/sbin/gmond') end
 end
 
 src_path = "/usr/src/ganglia-#{node[:ganglia][:version]}"
@@ -53,4 +54,6 @@ link "/usr/lib/ganglia" do
     node[:kernel][:machine] == "x86_64" and
       platform?( "redhat", "centos", "fedora" )
   end
+end
+
 end
