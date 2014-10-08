@@ -14,6 +14,7 @@ end
 remote_file "/usr/src/ganglia-#{node[:ganglia][:version]}.tar.gz" do
   source node[:ganglia][:uri]
   checksum node[:ganglia][:checksum]
+  not_if do ::File.exists?('/usr/local/sbin/gmond') end
 end
 
 src_path = "/usr/src/ganglia-#{node[:ganglia][:version]}"
