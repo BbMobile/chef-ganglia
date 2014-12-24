@@ -23,7 +23,7 @@ when true
     variables( {:hosts => "localhost",
                :grid_name => node[:ganglia][:grid_name],
                :clusters => node[:ganglia][:clusters]})
-    notifies :restart, "service[gmetad]"
+    notifies :restart, "service[ganglia-monitor]"
   end
   if node[:recipes].include? "iptables"
     include_recipe "ganglia::iptables"
@@ -35,7 +35,7 @@ when false
     variables({:hosts => ips.join(" "),
                :clusters => node[:ganglia][:clusters],
                :grid_name => node[:ganglia][:grid_name]})
-    notifies :restart, "service[gmetad]"
+    notifies :restart, "service[ganglia-monitor]"
   end
 end
 
